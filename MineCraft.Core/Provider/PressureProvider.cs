@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MineCraft.Core.Provider
+﻿namespace MineCraft.Core.Provider
 {
     public class PressureProvider : StandardProvider
     {

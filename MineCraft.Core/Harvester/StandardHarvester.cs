@@ -7,8 +7,12 @@
         public double EnergyRequirement { get; protected set; }
         public double Durability { get; protected set; }
 
-        public StandardHarvester(double initialDurability)
+        public StandardHarvester(int id, double oreOutput,
+            double energyRequirement, double initialDurability)
         {
+            this.Id = id;
+            this.OreOutput = oreOutput;
+            this.EnergyRequirement = energyRequirement;
             this.Durability = initialDurability;
         }
     }

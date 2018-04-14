@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MineCraft.Core.Provider
+﻿namespace MineCraft.Core.Provider
 {
     public class StandardProvider
     {
@@ -10,8 +6,11 @@ namespace MineCraft.Core.Provider
         public double EnergyOutput { get; protected set; }
         public double Durability { get; protected set; }
 
-        public StandardProvider(double initialDurability)
+        public StandardProvider(int id, double energyOutput,
+            double initialDurability)
         {
+            this.Id = id;
+            this.EnergyOutput = energyOutput;
             this.Durability = initialDurability;
         }
     }
