@@ -1,6 +1,6 @@
 ﻿namespace MineCraft.Core.Harvester
 {
-    public class SonicHarvester : BasicHarvester
+    public class SonicHarvester : StandardHarvester
     {
         public SonicHarvester(double initialDurability) 
             : base(initialDurability)

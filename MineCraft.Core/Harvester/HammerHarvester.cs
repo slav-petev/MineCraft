@@ -1,6 +1,6 @@
 ﻿namespace MineCraft.Core.Harvester
 {
-    public class HammerHarvester : BasicHarvester
+    public class HammerHarvester : StandardHarvester
     {
         public HammerHarvester(double initialDurability) 
             : base(initialDurability)
