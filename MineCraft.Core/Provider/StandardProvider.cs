@@ -1,17 +1,22 @@
-﻿namespace MineCraft.Core.Provider
+﻿using MineCraft.Core.Mode;
+
+namespace MineCraft.Core.Provider
 {
-    public class StandardProvider
+    public class StandardProvider : MiningEntity
     {
-        public int Id { get; protected set; }
         public double EnergyOutput { get; protected set; }
         public double Durability { get; protected set; }
 
-        public StandardProvider(int id, double energyOutput,
-            double initialDurability)
+        public StandardProvider(string id, double energyOutput,
+            double initialDurability) : base(id)
         {
-            this.Id = id;
             this.EnergyOutput = energyOutput;
             this.Durability = initialDurability;
+        }
+
+        protected override void ChangeModeInternal(SystemMode newMode)
+        {
+            
         }
     }
 }
