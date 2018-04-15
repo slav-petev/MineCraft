@@ -8,13 +8,10 @@ namespace MineCraft.Core
 {
     public class MiningSystem
     {
-        private readonly HashSet<StandardProvider> _providers =
-            new HashSet<StandardProvider>();
-        public IEnumerable<StandardProvider> Providers => _providers;
-
-        private readonly HashSet<StandardHarvester> _harvesters =
-            new HashSet<StandardHarvester>();
-        public IEnumerable<StandardHarvester> Harvesters => _harvesters;
+        private readonly Dictionary<string, StandardProvider> _providers =
+            new Dictionary<string, StandardProvider>();
+        private readonly Dictionary<string, StandardHarvester> _harvesters =
+            new Dictionary<string, StandardHarvester>();
 
         private SystemMode _systemMode;
 
@@ -23,27 +20,32 @@ namespace MineCraft.Core
         
         public MiningEntity FindById(string id)
         {
-            return null;
+            if (_providers.ContainsKey(id)) return _providers[id];
+            if (_harvesters.ContainsKey(id)) return _harvesters[id];
+
+            return new NullMiningEntity();
         }
 
         public void RegisterProvider(StandardProvider provider)
         {
-            _providers.Add(provider);
+            _providers.Add(provider.Id, provider);
             this.AvailableEnergy += provider.EnergyOutput;
         }
 
         public void RegisterHarvester(StandardHarvester harvester)
         { 
-            _harvesters.Add(harvester);
+            _harvesters.Add(harvester.Id, harvester);
         }
         
         public void Mine()
         {
-            var totalEnergyNeeded = _harvesters.Sum(harvester => harvester.EnergyRequirement);
+            var totalEnergyNeeded = _harvesters.Sum(harvester => 
+                harvester.Value.EnergyRequirement);
 
             if (totalEnergyNeeded > this.AvailableEnergy) return;
 
-            var totalOreAmount = _harvesters.Sum(harvester => harvester.OreOutput);
+            var totalOreAmount = _harvesters.Sum(harvester => 
+                harvester.Value.OreOutput);
             this.AvailableOre += totalOreAmount;
             this.AvailableEnergy -= totalEnergyNeeded;
         }
