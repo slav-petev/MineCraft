@@ -2,8 +2,9 @@
 {
     public class SonicHarvester : StandardHarvester
     {
-        public SonicHarvester(double initialDurability) 
-            : base(initialDurability)
+        public SonicHarvester(string id, double oreOutput,
+            double energyRequirement, double initialDurability) 
+            : base(id, oreOutput, energyRequirement, initialDurability)
         {
             this.EnergyRequirement /= 2;
             this.Durability -= 300;

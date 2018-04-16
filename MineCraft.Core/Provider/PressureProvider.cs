@@ -2,8 +2,9 @@
 {
     public class PressureProvider : StandardProvider
     {
-        public PressureProvider(double initialDurability) 
-            : base(initialDurability)
+        public PressureProvider(string id, double energyOutput,
+            double initialDurability) 
+            : base(id, energyOutput, initialDurability)
         {
             this.Durability -= 300;
             this.EnergyOutput *= 2;

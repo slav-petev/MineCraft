@@ -2,8 +2,9 @@
 {
     public class InfinityHarvester : StandardHarvester
     {
-        public InfinityHarvester(double initialDurability) 
-            : base(initialDurability)
+        public InfinityHarvester(string id, double oreOutput,
+            double energyRequirement, double initialDurability) 
+            : base(id, oreOutput, energyRequirement, initialDurability)
         {
             this.OreOutput /= 10;
         }

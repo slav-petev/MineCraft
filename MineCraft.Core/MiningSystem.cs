@@ -15,21 +15,23 @@ namespace MineCraft.Core
 
         private SystemMode _systemMode;
 
+        public double TotalEnergyProduced { get; private set; }
         public double AvailableEnergy { get; private set; }
-        public double AvailableOre { get; private set; }
+        public double TotalPlumbusOreMined { get; private set; }
         
         public MiningEntity FindById(string id)
         {
             if (_providers.ContainsKey(id)) return _providers[id];
             if (_harvesters.ContainsKey(id)) return _harvesters[id];
 
-            return new NullMiningEntity();
+            return new NullMiningEntity(id);
         }
 
         public void RegisterProvider(StandardProvider provider)
         {
             _providers.Add(provider.Id, provider);
             this.AvailableEnergy += provider.EnergyOutput;
+            this.TotalEnergyProduced += provider.EnergyOutput;
         }
 
         public void RegisterHarvester(StandardHarvester harvester)
@@ -46,7 +48,7 @@ namespace MineCraft.Core
 
             var totalOreAmount = _harvesters.Sum(harvester => 
                 harvester.Value.OreOutput);
-            this.AvailableOre += totalOreAmount;
+            this.TotalPlumbusOreMined += totalOreAmount;
             this.AvailableEnergy -= totalEnergyNeeded;
         }
 
